@@ -82,13 +82,14 @@ function Vault() {
 
 function Snake() {
   const N = 20;
-  const [snake, setSnake] = useState([[10, 10]]);
-  const [food, setFood] = useState([5, 5]);
-  const dir = useRef([1, 0]);
+  type P = [number, number];
+  const [snake, setSnake] = useState<P[]>([[10, 10]]);
+  const [food, setFood] = useState<P>([5, 5]);
+  const dir = useRef<P>([1, 0]);
   const [dead, setDead] = useState(false);
   useEffect(() => {
     const k = (e: KeyboardEvent) => {
-      const m: Record<string, number[]> = { ArrowUp: [0, -1], ArrowDown: [0, 1], ArrowLeft: [-1, 0], ArrowRight: [1, 0] };
+      const m: Record<string, P> = { ArrowUp: [0, -1], ArrowDown: [0, 1], ArrowLeft: [-1, 0], ArrowRight: [1, 0] };
       if (m[e.key]) { e.preventDefault(); dir.current = m[e.key]; }
     };
     window.addEventListener("keydown", k);
@@ -98,7 +99,7 @@ function Snake() {
     if (dead) return;
     const t = setInterval(() => {
       setSnake((s) => {
-        const h = [s[0][0] + dir.current[0], s[0][1] + dir.current[1]];
+        const h: P = [s[0][0] + dir.current[0], s[0][1] + dir.current[1]];
         if (h[0] < 0 || h[1] < 0 || h[0] >= N || h[1] >= N || s.some((p) => p[0] === h[0] && p[1] === h[1])) { setDead(true); return s; }
         const ate = h[0] === food[0] && h[1] === food[1];
         if (ate) setFood([Math.floor(Math.random() * N), Math.floor(Math.random() * N)]);
@@ -144,7 +145,7 @@ function Reaction() {
   const [s, setS] = useState<"idle" | "wait" | "go" | "done" | "early">("idle");
   const [ms, setMs] = useState(0);
   const start = useRef(0);
-  const t = useRef<ReturnType<typeof setTimeout>>();
+  const t = useRef<ReturnType<typeof setTimeout>>(undefined);
   const click = () => {
     if (s === "idle" || s === "done" || s === "early") { setS("wait"); t.current = setTimeout(() => { start.current = Date.now(); setS("go"); }, 1500 + Math.random() * 2500); }
     else if (s === "wait") { clearTimeout(t.current); setS("early"); }
