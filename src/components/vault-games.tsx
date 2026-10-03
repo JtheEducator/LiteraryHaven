@@ -114,7 +114,7 @@ export function MotoStunt() {
       if (!done) {
         const g = groundAt(L.pts, b.x);
         if (b.ground) {
-          if (keys.ArrowUp) b.vx += 0.25; if (keys.ArrowDown) b.vx -= 0.3;
+          if (keys["ArrowUp"]) b.vx += 0.25; if (keys["ArrowDown"]) b.vx -= 0.3;
           b.vx += Math.sin(g.a) * 0.15; b.vx *= 0.99; b.vx = Math.max(-3, Math.min(11, b.vx));
           const nx = b.x + b.vx; const ng = groundAt(L.pts, nx);
           // launch off crests: if new ground drops steeper than trajectory
@@ -123,7 +123,7 @@ export function MotoStunt() {
           } else { b.x = nx; b.y = ng.y; b.ang = ng.a; }
         } else {
           b.vy += 0.35; b.x += b.vx; b.y += b.vy;
-          if (keys.ArrowLeft) b.av -= 0.012; if (keys.ArrowRight) b.av += 0.012;
+          if (keys["ArrowLeft"]) b.av -= 0.012; if (keys["ArrowRight"]) b.av += 0.012;
           b.av *= 0.97; b.ang += b.av; b.spin += b.av;
           const ng = groundAt(L.pts, b.x);
           if (b.y >= ng.y) {
