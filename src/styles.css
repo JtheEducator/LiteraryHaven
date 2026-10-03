@@ -51,6 +51,11 @@
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
+  --font-serif: "Fraunces", serif;
+  --font-arcade: "Press Start 2P", monospace;
+  --color-vault: var(--vault);
+  --color-vault-foreground: var(--vault-foreground);
+  --color-neon: var(--neon);
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
@@ -62,15 +67,18 @@
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
+  --radius: 0.5rem;
+  --vault: oklch(0.16 0.03 280);
+  --vault-foreground: oklch(0.95 0.02 140);
+  --neon: oklch(0.85 0.22 145);
+  --background: oklch(0.96 0.02 85);
   --foreground: oklch(0.129 0.042 264.695);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.129 0.042 264.695);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
+  --primary: oklch(0.42 0.12 30);
+  --primary-foreground: oklch(0.97 0.02 85);
   --secondary: oklch(0.968 0.007 247.896);
   --secondary-foreground: oklch(0.208 0.042 265.755);
   --muted: oklch(0.968 0.007 247.896);
@@ -138,6 +146,7 @@
   }
 
   body {
+    font-family: var(--font-serif);
     background-color: var(--color-background);
     color: var(--color-foreground);
   }
