@@ -1,29 +1,38 @@
-# Welcome to your Lovable project
+# Literary Haven
 
-This project was built with [Lovable](https://lovable.dev).
+A quiet little library of timeless stories — every book free to read, in the public domain — with a secret arcade hidden inside.
 
-## Build with Lovable
+Built with [TanStack Start](https://tanstack.com/start), React 19, TypeScript and Tailwind CSS v4.
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
+## Features
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
+- **Library** — 18 genuine public-domain classics (Austen, Shelley, Dickens, Wells and more) with real cover art from Project Gutenberg, genre filters, and blurbs.
+- **Reader** — every book is fully readable on the site, page by page, and remembers where you stopped.
+- **The Locked Tome** — a sealed book on the shelf. Enter the secret code to unlock…
+- **The Vault** — a hidden arcade with six original mini-games: Snake, Cookie Clicker, Reaction Test, Math Rush, Life Sim (BitLife-style) and Moto Stunt Rider (Moto X3M-style).
 
-## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+## Getting started
 
 ```sh
 git clone <this-repository-url>
-cd <repository-name>
-npm i
+cd literary-haven
+npm install
 npm run dev
 ```
 
-## Built with
+Then open http://localhost:8080.
 
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
+Other scripts:
+
+```sh
+npm run build      # production build
+npm run test       # run tests
+npm run lint       # eslint
+npm run format     # prettier
+```
+
+## Notes
+
+- All books and cover art are loaded live from [Project Gutenberg](https://www.gutenberg.org) and are in the public domain.
+- The vault code lives in `src/routes/index.tsx` (`SECRET_CODE`) — change it there.
+- Book data lives in `src/routes/index.tsx` (`books` array); the vault games are in `src/components/vault-games.tsx`.
