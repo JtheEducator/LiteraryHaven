@@ -60,7 +60,7 @@ function Index() {
   const nav = useNavigate();
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (code.replace(/\s/g, "").toUpperCase() === SECRET_CODE) {
+    if (code.replace(/\s/g, "").toLowerCase() === SECRET_CODE.toLowerCase()) {
       sessionStorage.setItem("vault", "1");
       nav({ to: "/vault" });
     } else setErr(true);
