@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import { useState } from "react";
 
 export const Route = createFileRoute("/")({
@@ -15,9 +15,11 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
+export const coverUrl = (id: number) => `https://www.gutenberg.org/cache/epub/${id}/pg${id}.cover.medium.jpg`;
+
 export const SECRET_CODE = "OPENSESAME";
 
-type Book = {
+export type Book = {
   t: string;
   a: string;
   y: number;
@@ -28,7 +30,7 @@ type Book = {
 };
 
 // All books below are in the public domain; full texts are free on Project Gutenberg.
-const books: Book[] = [
+export const books: Book[] = [
   { t: "Pride and Prejudice", a: "Jane Austen", y: 1813, g: "Romance", h: 20, gut: 1342, blurb: "Elizabeth Bennet spars with the proud Mr. Darcy in the wittiest courtship in English fiction." },
   { t: "Moby-Dick", a: "Herman Melville", y: 1851, g: "Adventure", h: 210, gut: 2701, blurb: "Ishmael joins the whaler Pequod on Captain Ahab's obsessive hunt for the white whale." },
   { t: "Frankenstein", a: "Mary Shelley", y: 1818, g: "Horror", h: 140, gut: 84, blurb: "A young scientist's creation turns on him in the novel that invented science fiction." },
@@ -87,11 +89,12 @@ function Index() {
           <article key={b.t} className="group">
             <button onClick={() => setSel(b)} className="w-full text-left">
               <div
-                className="aspect-[2/3] rounded-r-lg shadow-lg p-4 flex flex-col justify-between transition-transform group-hover:-translate-y-2"
+                className="relative overflow-hidden aspect-[2/3] rounded-r-lg shadow-lg p-4 flex flex-col justify-between transition-transform group-hover:-translate-y-2"
                 style={{ background: `oklch(0.45 0.1 ${b.h})` }}
               >
-                <h2 className="text-xl font-bold text-primary-foreground leading-tight">{b.t}</h2>
-                <div>
+                <img src={coverUrl(b.gut)} alt={`Cover of ${b.t}`} loading="lazy" className="absolute inset-0 w-full h-full object-cover rounded-r-lg" onError={(e) => (e.currentTarget.style.display = "none")} />
+                <h2 className="relative text-xl font-bold text-primary-foreground leading-tight">{b.t}</h2>
+                <div className="relative">
                   <p className="text-sm text-primary-foreground/80">{b.a}</p>
                   <p className="text-xs text-primary-foreground/60 mt-1">{b.y < 0 ? `c. ${-b.y} BC` : b.y}</p>
                 </div>
@@ -100,7 +103,7 @@ function Index() {
           </article>
         ))}
         <button onClick={() => setOpen(true)} className="group text-left">
-          <div className="aspect-[2/3] rounded-r-lg shadow-lg p-4 flex flex-col justify-between bg-foreground transition-transform group-hover:-translate-y-2 group-hover:rotate-1">
+          <div className="relative overflow-hidden aspect-[2/3] rounded-r-lg shadow-lg p-4 flex flex-col justify-between bg-foreground transition-transform group-hover:-translate-y-2 group-hover:rotate-1">
             <h2 className="text-xl font-bold text-background">The Locked Tome</h2>
             <p className="text-sm text-background/70">🔒 Author unknown</p>
           </div>
@@ -110,9 +113,7 @@ function Index() {
         <div className="fixed inset-0 bg-foreground/70 flex items-center justify-center p-4 z-40" onClick={() => setSel(null)}>
           <div onClick={(e) => e.stopPropagation()} className="bg-background rounded-lg p-8 w-full max-w-md shadow-2xl">
             <div className="flex gap-6">
-              <div className="w-24 shrink-0 aspect-[2/3] rounded-r-md shadow-lg p-2 flex items-end" style={{ background: `oklch(0.45 0.1 ${sel.h})` }}>
-                <p className="text-xs font-bold text-primary-foreground leading-tight">{sel.t}</p>
-              </div>
+              <img src={coverUrl(sel.gut)} alt={`Cover of ${sel.t}`} className="w-24 shrink-0 aspect-[2/3] object-cover rounded-r-md shadow-lg" style={{ background: `oklch(0.45 0.1 ${sel.h})` }} />
               <div>
                 <h3 className="text-2xl font-bold text-primary leading-tight">{sel.t}</h3>
                 <p className="text-sm text-muted-foreground mt-1">
@@ -123,14 +124,13 @@ function Index() {
             </div>
             <p className="mt-4 text-xs text-muted-foreground">Public domain — free to read, share and keep forever.</p>
             <div className="mt-4 flex gap-3">
-              <a
-                href={`https://www.gutenberg.org/ebooks/${sel.gut}`}
-                target="_blank"
-                rel="noreferrer"
+              <Link
+                to="/read/$id"
+                params={{ id: String(sel.gut) }}
                 className="flex-1 text-center bg-primary text-primary-foreground rounded-md py-2 font-bold hover:opacity-90"
               >
-                Read free →
-              </a>
+                Read now →
+              </Link>
               <button onClick={() => setSel(null)} className="px-4 py-2 rounded-md border border-border text-muted-foreground hover:text-primary">
                 Back
               </button>
