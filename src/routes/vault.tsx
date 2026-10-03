@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
+import { LifeSim, MotoStunt } from "@/components/vault-games";
 
 export const Route = createFileRoute("/vault")({
   head: () => ({
@@ -20,6 +21,8 @@ const games: G[] = [
   { id: "clicker", name: "Cookie Clicker", cat: "Idle", h: 60 },
   { id: "reaction", name: "Reaction Test", cat: "Skill", h: 20 },
   { id: "math", name: "Math Rush", cat: "Brain", h: 220 },
+  { id: "life", name: "Life Sim", cat: "Simulation", h: 300 },
+  { id: "moto", name: "Moto Stunt Rider", cat: "Racing", h: 30 },
 ];
 
 function Vault() {
@@ -62,6 +65,8 @@ function Vault() {
                 {play.id === "clicker" && <Clicker />}
                 {play.id === "reaction" && <Reaction />}
                 {play.id === "math" && <MathRush />}
+                {play.id === "life" && <LifeSim />}
+                {play.id === "moto" && <MotoStunt />}
               </div>
             </div>
           ) : (
