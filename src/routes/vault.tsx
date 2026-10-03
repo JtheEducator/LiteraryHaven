@@ -90,7 +90,7 @@ function Snake() {
   useEffect(() => {
     const k = (e: KeyboardEvent) => {
       const m: Record<string, P> = { ArrowUp: [0, -1], ArrowDown: [0, 1], ArrowLeft: [-1, 0], ArrowRight: [1, 0] };
-      if (m[e.key]) { e.preventDefault(); dir.current = m[e.key]; }
+      if (m[e.key]) { e.preventDefault(); dir.current = m[e.key]!; }
     };
     window.addEventListener("keydown", k);
     return () => window.removeEventListener("keydown", k);
@@ -99,7 +99,7 @@ function Snake() {
     if (dead) return;
     const t = setInterval(() => {
       setSnake((s) => {
-        const h: P = [s[0][0] + dir.current[0], s[0][1] + dir.current[1]];
+        const hd = s[0]!; const h: P = [hd[0] + dir.current[0], hd[1] + dir.current[1]];
         if (h[0] < 0 || h[1] < 0 || h[0] >= N || h[1] >= N || s.some((p) => p[0] === h[0] && p[1] === h[1])) { setDead(true); return s; }
         const ate = h[0] === food[0] && h[1] === food[1];
         if (ate) setFood([Math.floor(Math.random() * N), Math.floor(Math.random() * N)]);
