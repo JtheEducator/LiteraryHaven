@@ -4,11 +4,11 @@ import { useEffect, useRef, useState } from "react";
 export const Route = createFileRoute("/vault")({
   head: () => ({
     meta: [
-      { title: "The Vault" },
-      { name: "description", content: "A hidden arcade." },
+      { title: "The Vault — Literary Haven" },
+      { name: "description", content: "A hidden arcade inside Literary Haven." },
       { name: "robots", content: "noindex" },
-      { property: "og:title", content: "The Vault" },
-      { property: "og:description", content: "A hidden arcade." },
+      { property: "og:title", content: "The Vault — Literary Haven" },
+      { property: "og:description", content: "A hidden arcade inside Literary Haven." },
     ],
   }),
   component: Vault,
