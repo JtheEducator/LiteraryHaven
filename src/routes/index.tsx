@@ -5,9 +5,9 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Literary Haven — A Quiet Little Library" },
-      { name: "description", content: "Browse classic and modern books at Literary Haven, a cozy online library." },
+      { name: "description", content: "Browse real public-domain classics — Austen, Shelley, Dickens, Wells and more — free to read at Literary Haven." },
       { property: "og:title", content: "Literary Haven — A Quiet Little Library" },
-      { property: "og:description", content: "Browse classic and modern books at Literary Haven." },
+      { property: "og:description", content: "Browse real public-domain classics, free to read, at Literary Haven." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
