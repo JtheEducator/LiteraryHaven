@@ -4,10 +4,12 @@ import { useState } from "react";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Inkwell Books — A Quiet Little Library" },
-      { name: "description", content: "Browse classic and modern books at Inkwell, a cozy online library." },
-      { property: "og:title", content: "Inkwell Books — A Quiet Little Library" },
-      { property: "og:description", content: "Browse classic and modern books at Inkwell." },
+      { title: "Literary Haven — A Quiet Little Library" },
+      { name: "description", content: "Browse classic and modern books at Literary Haven, a cozy online library." },
+      { property: "og:title", content: "Literary Haven — A Quiet Little Library" },
+      { property: "og:description", content: "Browse classic and modern books at Literary Haven." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Index,
@@ -40,7 +42,7 @@ function Index() {
   return (
     <main className="min-h-screen px-6 py-12 max-w-6xl mx-auto">
       <header className="mb-12 border-b-2 border-primary pb-6">
-        <h1 className="text-6xl font-black text-primary">Inkwell Books</h1>
+        <h1 className="text-6xl font-black text-primary">Literary Haven</h1>
         <p className="mt-2 text-muted-foreground italic">A quiet little library of timeless stories.</p>
       </header>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8">
