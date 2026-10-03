@@ -17,7 +17,7 @@ export const Route = createFileRoute("/")({
 
 export const coverUrl = (id: number) => `https://www.gutenberg.org/cache/epub/${id}/pg${id}.cover.medium.jpg`;
 
-export const SECRET_CODE = "OPENSESAME";
+export const SECRET_CODE = "Jay123";
 
 export type Book = {
   t: string;
